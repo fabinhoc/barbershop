@@ -13,8 +13,8 @@ $router->group(['middleware' => 'jwt-auth'], function () use ($router) {
         $rules = [
             'serviceName' => 'required',
             'dateExecution' => 'required|date',
-            'initialHour' => 'required|time',
-            'endHour' => 'required|time',
+            'initialHour' => 'required',
+            'endHour' => 'required',
             'client_id' => 'required|exists:App\Client,id',
             'user_id' => 'required|exists:App\User,id'
         ];
@@ -25,8 +25,6 @@ $router->group(['middleware' => 'jwt-auth'], function () use ($router) {
     $router->put('appointments/{id}', function(Request $request){
         $rules = [
             'dateExecution' => 'date',
-            'initialHour' => 'time',
-            'endHour' => 'time',
             'client_id' => 'exists:App\Client,id',
             'user_id' => 'exists:App\User,id'
         ];

@@ -11,9 +11,13 @@ trait AccessPermission {
         parent::boot();
 
         static::addGlobalScope('permission', function (Builder $builder) {
-            $loggedUser = json_decode((new AuthController)->me()->content());
-            if ($loggedUser->accessType == "employee") {
-                $builder->where('user_id', $loggedUser->id);
+            $user = json_decode((new AuthController)->me());
+            
+            if ($user) {
+                $loggedUser = json_decode((new AuthController)->me()->content());
+                if ($loggedUser && $loggedUser->accessType == "employee") {
+                    $builder->where('user_id', $loggedUser->id);
+                }
             }
         });
     }
