@@ -6,10 +6,13 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Traits\AccessPermission;
+use Illuminate\Console\Scheduling\Appointment;
 
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
+    use AccessPermission;
 
     /**
      * The attributes that are mass assignable.
@@ -66,5 +69,15 @@ class User extends Authenticatable implements JWTSubject
     public function clients()
     {
         return $this->hasMany(Client::class, 'user_id', 'id');
+    }
+
+    /**
+     * Related App\Appointment::class
+     *
+     * @return HasMany
+     */
+    public function appointments()
+    {
+        return $this->hasMany(Appointment::class, 'user_id', 'id');
     }
 }

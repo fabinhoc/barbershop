@@ -5,9 +5,8 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Traits\AccessPermission;
-use Illuminate\Console\Scheduling\Appointment;
 
-class Client extends Authenticatable
+class Appointment extends Authenticatable
 {
     use Notifiable;
     use AccessPermission;
@@ -18,9 +17,13 @@ class Client extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'email', 
-        'phone'
+        'serviceName', 
+        'user_id', 
+        'client_id',
+        'dateExecution',
+        'initialHour',
+        'endHour',
+        'isConfirmed'
     ];
 
     /**
@@ -34,12 +37,12 @@ class Client extends Authenticatable
     }
 
     /**
-     * Related App\Appointment::class
+     * Related App\Client::class
      *
      * @return BelongsTo
      */
-    public function appointments()
+    public function client()
     {
-        return $this->hasMany(Appointment::class, 'client_id', 'id');
+        return $this->belongsTo(Client::class, 'client_id', 'id');
     }
 }
