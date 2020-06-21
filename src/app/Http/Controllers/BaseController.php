@@ -7,8 +7,11 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Support\Jsonable;
 
+
 abstract class BaseController
 {
+
+
     protected $class;
     protected $hash;
 

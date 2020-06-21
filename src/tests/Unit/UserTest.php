@@ -8,13 +8,13 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class UserTest extends TestCase
 {
-    use RefreshDatabase;
+    // use RefreshDatabase;
 
     protected $json = [
         'id',
         'name',
         'email',
-        'permission',
+        'accessType',
         'email_verified_at',
         'created_at', 
         'updated_at'
