@@ -3,6 +3,8 @@
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
 use App\User;
+use App\Client;
+use App\Appointment;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Illuminate\Support\Facades\Hash;
@@ -18,13 +20,18 @@ use Illuminate\Support\Facades\Hash;
 |
 */
 
-$factory->define(User::class, function (Faker $faker) {
+$factory->define(Appointment::class, function (Faker $faker) {
     return [
-        'name' => $faker->name,
-        'email' => $faker->unique()->safeEmail,
-        'email_verified_at' => now(),
-        'password' => Hash::make('admin'), // password
-        'accessType' => Hash::make('admin'), // password
-        'remember_token' => Str::random(10),
+        'serviceName' => $faker->name,
+        'user_id' => function () {
+            return factory(User::class)->create()->id;
+        },
+        'client_id' => function () {
+            return factory(Client::class)->create()->id;
+        },
+        'dateExecution' => $faker->date(),
+        'initialHour' => $faker->time(),
+        'endHour' => $faker->time(),
+        'isConfirmed' => $faker->boolean(false)
     ];
 });

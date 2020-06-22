@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
+use App\Traits\AccessPermission;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
-   
     /**
      * Get a JWT via given credentials.
      *
@@ -33,7 +34,7 @@ class AuthController extends Controller
     {
         return response()->json(auth('api')->user());
     }
-
+  
     /**
      * Log the user out (Invalidate the token).
      *

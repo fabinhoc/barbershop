@@ -14,6 +14,7 @@ class UserTest extends TestCase
         'id',
         'name',
         'email',
+        'accessType',
         'email_verified_at',
         'created_at', 
         'updated_at'
