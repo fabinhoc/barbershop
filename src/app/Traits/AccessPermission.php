@@ -11,7 +11,7 @@ trait AccessPermission {
         parent::boot();
 
         static::addGlobalScope('permission', function (Builder $builder) {
-            $user = json_decode((new AuthController)->me());
+            $user = (new AuthController)->me();
             
             if ($user) {
                 $loggedUser = json_decode((new AuthController)->me()->content());

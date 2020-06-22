@@ -17,7 +17,7 @@ abstract class BaseController
 
     public function index()
     {
-        return $this->class::paginate(10);
+        return $this->class::all();
     }
 
     public function store(Request $request, $rules = [])

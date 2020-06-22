@@ -12,7 +12,8 @@ $router->group(['middleware' => 'jwt-auth'], function () use ($router) {
     $router->post('clients', function(Request $request){
         $rules = [
             'email' => 'required|unique:clients|email',
-            'name' => 'required'
+            'name' => 'required',
+            'user_id' => 'required|exists:users,id'
         ];
         
         $resource = new ClientController();

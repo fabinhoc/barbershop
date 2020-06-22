@@ -12,7 +12,7 @@ use Illuminate\Console\Scheduling\Appointment;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-    use AccessPermission;
+    // use AccessPermission;
 
     /**
      * The attributes that are mass assignable.
