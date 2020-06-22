@@ -33,6 +33,8 @@ Install laravel project
 
     $ ~/root/barbershop cd src
     $ ~/root/barbershop/src docker-compose exec php-fpm install
+    $ ~/root/barbershop/src docker-compose exec php-fpm php artisan migrate // Create tables
+    $ ~/root/babershop/src docker-compose exec php-fpm php artisan db:seed // Create user admin
 The project will available in http://localhost:4040/
 
 # Frontend
